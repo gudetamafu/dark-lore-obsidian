@@ -41,6 +41,12 @@ pip install fonttools zopfli
 python build.py
 ```
 
+## Releasing
+
+1. Raise `version` in `manifest.json`, and add a section headed with the new version to `CHANGELOG.md`.
+2. Rebuild `theme.css` if the theme changed, and push.
+3. In the Actions tab, open **Release** and press **Run workflow**. It makes the release, tagged with the version, with `manifest.json` and `theme.css` attached.
+
 ## Licence
 
 The theme's own code is under the MIT licence ([`LICENSE`](LICENSE)). The embedded fonts are under the SIL Open Font License 1.1 ([`OFL.txt`](OFL.txt)).
