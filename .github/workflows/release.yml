@@ -1,0 +1,39 @@
+# Makes a release when a version tag is pushed (for example 0.1.1).
+# The tag must equal the manifest's version, as Obsidian requires.
+# The release carries manifest.json and theme.css, which is what Obsidian downloads.
+# Its notes are the tag's own message.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: The tag must match the manifest
+        run: |
+          version=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")
+          if [ "$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match manifest.json's version $version."
+            exit 1
+          fi
+
+      - name: Make the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git tag -l --format='%(contents)' "$GITHUB_REF_NAME" > notes.md
+          gh release create "$GITHUB_REF_NAME" manifest.json theme.css \
+            --title "Dark Lore $GITHUB_REF_NAME" \
+            --notes-file notes.md
