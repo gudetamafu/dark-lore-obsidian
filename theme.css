@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════════
-   DARK LORE  ·  a theme for Obsidian  ·  v0.1.1
+   DARK LORE  ·  a theme for Obsidian  ·  v0.1.2
    From darklorebbs.com: an island tavern at dusk, with a BBS in the corner.
 
    Dark is the tavern at night. Light is parchment.
@@ -109,6 +109,7 @@ body {
   --dl-wash-2: rgba(200, 146, 58, 0.14);
   --dl-wash-3: rgba(200, 146, 58, 0.28);
   --dl-highlight: rgba(255, 180, 90, 0.24);
+  --dl-link-rule: rgba(200, 169, 110, 0.55);
 
   /* amber, as Obsidian's accent. A colour picked in Settings still wins. */
   --accent-h: 37;
@@ -188,6 +189,7 @@ body {
   --dl-wash-2: rgba(120, 66, 18, 0.14);
   --dl-wash-3: rgba(139, 80, 32, 0.26);
   --dl-highlight: rgba(224, 122, 52, 0.30);
+  --dl-link-rule: rgba(146, 42, 18, 0.5);
 
   --accent-h: 27;
   --accent-s: 63%;
@@ -293,7 +295,10 @@ body {
   --link-external-color-hover: var(--dl-bright);
   --link-unresolved-color: var(--dl-gold);
   --link-unresolved-opacity: 0.6;
-  --link-decoration-thickness: 1px;
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
 
   /* the terminal: code */
   --code-background: var(--dl-code-bg);
@@ -419,11 +424,18 @@ body {
   background-image: var(--dl-lamp);
 }
 
-/* Links are underlined in dots, as in the long reads. */
-.markdown-rendered a,
+/* Links are underlined in dots, as in the long reads: a dotted rule under
+   the words, drawn as a border so every engine shows it. Obsidian's own
+   underline is switched off with its variables, under WIRING. */
+.markdown-rendered a.internal-link,
+.markdown-rendered a.external-link,
 .cm-s-obsidian .cm-underline {
-  text-decoration-style: dotted;
-  text-underline-offset: 3px;
+  border-bottom: 1px dotted var(--dl-link-rule);
+}
+.markdown-rendered a.internal-link:hover,
+.markdown-rendered a.external-link:hover,
+.cm-s-obsidian .cm-underline:hover {
+  border-bottom-color: var(--dl-amber);
 }
 
 /* Tags are typed on the terminal. */

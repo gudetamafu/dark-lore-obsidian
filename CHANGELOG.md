@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Links are underlined in dots with a border instead of a dotted text decoration, so every version of Obsidian shows the dots. Obsidian's directory flagged the old way as only partly supported.
+
 ## 0.1.1
 
 The first release of Dark Lore: the tavern at night, and parchment by day.
