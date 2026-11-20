@@ -1,0 +1,3 @@
+# the build's copy of the original fonts (build.py fetches them)
+.fonts/
+__pycache__/

@@ -1,0 +1,457 @@
+/* ════════════════════════════════════════════════════════════════════
+   DARK LORE  ·  a theme for Obsidian  ·  v{{VERSION}}
+   From darklorebbs.com: an island tavern at dusk, with a BBS in the corner.
+
+   Dark is the tavern at night. Light is parchment.
+   Reading text is IM Fell English, titles are Cinzel Decorative,
+   and the house terminal (the interface, code, tags) is VT323.
+   All three are embedded at the foot of this file, so the theme makes
+   no network calls. Their licence is down there with them.
+
+   How it is put together, top to bottom:
+     1. Type            the same in both schemes
+     2. Dark            the tavern at night
+     3. Light           parchment
+     4. Wiring          Obsidian's variables, pointed at the palette
+     5. Small touches   the few rules that are not variables
+     6. The fonts       embedded
+   ════════════════════════════════════════════════════════════════════ */
+
+
+/* ── 1. TYPE ───────────────────────────────────────────────────────── */
+
+body {
+  --dl-font-read:  'IM Fell English', Georgia, 'Times New Roman', serif;
+  --dl-font-title: 'Cinzel Decorative', 'IM Fell English', Georgia, serif;
+  --dl-font-term:  'VT323', ui-monospace, 'Cascadia Mono', Consolas, 'Courier New', monospace;
+
+  /* A font picked in Settings → Appearance still wins over these. */
+  --font-text-theme: var(--dl-font-read);
+  --font-interface-theme: var(--dl-font-term);
+  --font-monospace-theme: var(--dl-font-term);
+
+  /* VT323 runs small for its size, so the terminal is set a step up. */
+  --font-ui-smaller: 14px;
+  --font-ui-small: 16px;
+  --font-ui-medium: 18px;
+  --font-ui-large: 22px;
+  --code-size: 1.12em;
+  --status-bar-font-size: 15px;
+
+  --line-height-normal: 1.7;
+
+  /* The page's name, and the first heading: the sign over the door. */
+  --inline-title-font: var(--dl-font-title);
+  --inline-title-weight: 700;
+  --inline-title-size: 2em;
+  --inline-title-line-height: 1.15;
+  --h1-font: var(--dl-font-title);
+  --h1-weight: 700;
+  --h1-size: 1.7em;
+  --h1-line-height: 1.2;
+
+  /* IM Fell has one weight. Asking for more only smears it. */
+  --h2-font: var(--dl-font-read);
+  --h2-style: italic;
+  --h2-weight: 400;
+  --h2-size: 1.5em;
+  --h3-font: var(--dl-font-term);
+  --h3-weight: 400;
+  --h3-size: 1.5em;
+  --h4-font: var(--dl-font-term);
+  --h4-weight: 400;
+  --h4-size: 1.3em;
+  --h5-font: var(--dl-font-read);
+  --h5-style: italic;
+  --h5-weight: 400;
+  --h5-size: 1.12em;
+  --h6-font: var(--dl-font-term);
+  --h6-weight: 400;
+  --h6-size: 1.12em;
+
+  /* A terminal has square corners. */
+  --radius-s: 2px;
+  --radius-m: 3px;
+  --radius-l: 4px;
+  --radius-xl: 6px;
+  --checkbox-radius: 2px;
+  --tag-radius: 2px;
+}
+
+
+/* ── 2. DARK: the tavern at night ──────────────────────────────────── */
+
+.theme-dark {
+  /* the room */
+  --dl-page:      #0e0907;   /* the reading page */
+  --dl-page-alt:  #150e0a;
+  --dl-wood:      #0a0605;   /* side panels */
+  --dl-wood-alt:  #140c09;
+  --dl-pitch:     #060304;   /* the bars, and the terminal's screen */
+  --dl-rule:      #2a1808;
+  --dl-rule-2:    #3d2410;
+  --dl-rule-3:    #5a3a10;
+
+  /* ink and light */
+  --dl-bright:    #e8d4a0;   /* parchment */
+  --dl-text:      #d4c4a0;
+  --dl-muted:     #b8a480;
+  --dl-faint:     #86714c;
+  --dl-amber:     #c8923a;
+  --dl-amber-hi:  #ffb45a;
+  --dl-amber-lo:  #a07a3e;
+  --dl-gold:      #c8a96e;
+  --dl-lilac:     #a898e8;
+  --dl-screen:    #e8b85a;   /* phosphor */
+  --dl-on-accent: #1a0f06;
+
+  --dl-wash-1: rgba(200, 146, 58, 0.07);
+  --dl-wash-2: rgba(200, 146, 58, 0.14);
+  --dl-wash-3: rgba(200, 146, 58, 0.28);
+  --dl-highlight: rgba(255, 180, 90, 0.24);
+
+  /* amber, as Obsidian's accent. A colour picked in Settings still wins. */
+  --accent-h: 37;
+  --accent-s: 56%;
+  --accent-l: 51%;
+
+  --color-base-00:  #0e0907;
+  --color-base-05:  #110b08;
+  --color-base-10:  #150e0a;
+  --color-base-20:  #1a110c;
+  --color-base-25:  #20150e;
+  --color-base-30:  #2a1808;
+  --color-base-35:  #3d2410;
+  --color-base-40:  #5a3a10;
+  --color-base-50:  #86714c;
+  --color-base-60:  #a08a62;
+  --color-base-70:  #b8a480;
+  --color-base-100: #d4c4a0;
+
+  /* the dusk, the lamp, the cave water, the neon */
+  --color-red:    #e0654a;
+  --color-orange: #e07a34;
+  --color-yellow: #e9c878;
+  --color-green:  #8fb573;
+  --color-cyan:   #5fd0bc;
+  --color-blue:   #7f9be0;
+  --color-purple: #a898e8;
+  --color-pink:   #d98aa8;
+  /* the same eight as number triples, for plugins that still read them */
+  --color-red-rgb:    224, 101, 74;
+  --color-orange-rgb: 224, 122, 52;
+  --color-yellow-rgb: 233, 200, 120;
+  --color-green-rgb:  143, 181, 115;
+  --color-cyan-rgb:   95, 208, 188;
+  --color-blue-rgb:   127, 155, 224;
+  --color-purple-rgb: 168, 152, 232;
+  --color-pink-rgb:   217, 138, 168;
+  --text-highlight-bg-rgb: 255, 180, 90;
+
+  --dl-code-bg:       var(--dl-pitch);
+  --dl-code-text:     var(--dl-screen);
+  --dl-code-comment:  #8b7350;
+  --dl-code-punct:    #9a7a4a;
+  --dl-code-string:   #d4c4a0;
+  --dl-title-glow:    0 0 28px rgba(200, 140, 50, 0.22);
+  --dl-lamp:
+    radial-gradient(ellipse 44% 320px at 46% 0, rgba(255, 170, 70, 0.075) 0%, rgba(255, 170, 70, 0) 75%),
+    radial-gradient(ellipse 90% 640px at 50% 0, rgba(204, 112, 40, 0.04) 0%, rgba(0, 0, 0, 0) 80%);
+}
+
+
+/* ── 3. LIGHT: parchment ───────────────────────────────────────────── */
+
+.theme-light {
+  --dl-page:      #eedfb4;
+  --dl-page-alt:  #e8d4a0;
+  --dl-wood:      #e2cf9b;
+  --dl-wood-alt:  #d9c48c;
+  --dl-pitch:     #d6c086;
+  --dl-rule:      #c9b07a;
+  --dl-rule-2:    #b4955c;
+  --dl-rule-3:    #8b5020;
+
+  --dl-bright:    #2e1808;   /* ink */
+  --dl-text:      #2e1808;
+  --dl-muted:     #6a4224;
+  --dl-faint:     #8f6d45;
+  --dl-amber:     #8b5020;
+  --dl-amber-hi:  #922a12;   /* the rubric: red ink */
+  --dl-amber-lo:  #66461c;
+  --dl-gold:      #922a12;
+  --dl-lilac:     #5f4bb0;
+  --dl-screen:    #2e1808;
+  --dl-on-accent: #fff6d6;
+
+  --dl-wash-1: rgba(120, 66, 18, 0.07);
+  --dl-wash-2: rgba(120, 66, 18, 0.14);
+  --dl-wash-3: rgba(139, 80, 32, 0.26);
+  --dl-highlight: rgba(224, 122, 52, 0.30);
+
+  --accent-h: 27;
+  --accent-s: 63%;
+  --accent-l: 34%;
+
+  --color-base-00:  #eedfb4;
+  --color-base-05:  #ebdaac;
+  --color-base-10:  #e8d4a0;
+  --color-base-20:  #e2cf9b;
+  --color-base-25:  #d9c48c;
+  --color-base-30:  #c9b07a;
+  --color-base-35:  #b4955c;
+  --color-base-40:  #a07f4a;
+  --color-base-50:  #8f6d45;
+  --color-base-60:  #7a5a34;
+  --color-base-70:  #6a4224;
+  --color-base-100: #2e1808;
+
+  --color-red:    #a8321a;
+  --color-orange: #b0560f;
+  --color-yellow: #8f6a08;
+  --color-green:  #4a7436;
+  --color-cyan:   #1b776e;
+  --color-blue:   #3b56a8;
+  --color-purple: #5f4bb0;
+  --color-pink:   #a84470;
+  --color-red-rgb:    168, 50, 26;
+  --color-orange-rgb: 176, 86, 15;
+  --color-yellow-rgb: 143, 106, 8;
+  --color-green-rgb:  74, 116, 54;
+  --color-cyan-rgb:   27, 119, 110;
+  --color-blue-rgb:   59, 86, 168;
+  --color-purple-rgb: 95, 75, 176;
+  --color-pink-rgb:   168, 68, 112;
+  --text-highlight-bg-rgb: 224, 122, 52;
+
+  --dl-code-bg:       #e0cc96;
+  --dl-code-text:     #2e1808;
+  --dl-code-comment:  #6a4c2c;
+  --dl-code-punct:    #6a4224;
+  --dl-code-string:   #4a7436;
+  --dl-title-glow:    none;
+  --dl-lamp:          none;
+}
+
+
+/* ── 4. WIRING: Obsidian's variables, pointed at the palette ───────── */
+
+/* Callouts: Obsidian paints note, info and todo blue. Here they take the
+   house colours. Since Obsidian 1.13 these take a full colour, not an RGB
+   triple, which is why the manifest asks for 1.13 or newer. Set on the
+   scheme classes, where Obsidian sets its own. */
+.theme-dark,
+.theme-light {
+  --callout-default: var(--dl-amber);
+  --callout-info: var(--color-purple);
+  --callout-todo: var(--color-yellow);
+}
+
+body {
+  /* surfaces */
+  --background-primary: var(--dl-page);
+  --background-primary-alt: var(--dl-page-alt);
+  --background-secondary: var(--dl-wood);
+  --background-secondary-alt: var(--dl-wood-alt);
+  --background-modifier-border: var(--dl-rule);
+  --background-modifier-border-hover: var(--dl-rule-2);
+  --background-modifier-border-focus: var(--dl-rule-3);
+  --background-modifier-hover: var(--dl-wash-1);
+  --background-modifier-active-hover: var(--dl-wash-2);
+  --background-modifier-form-field: var(--dl-pitch);
+  --interactive-normal: var(--dl-page-alt);
+  --interactive-hover: var(--dl-rule);
+  --divider-color: var(--dl-rule);
+  --divider-color-hover: var(--dl-amber);
+
+  /* text */
+  --text-normal: var(--dl-text);
+  --text-muted: var(--dl-muted);
+  --text-faint: var(--dl-faint);
+  --text-accent: var(--dl-gold);
+  --text-accent-hover: var(--dl-bright);
+  --text-on-accent: var(--dl-on-accent);
+  --text-selection: var(--dl-wash-3);
+  --text-highlight-bg: var(--dl-highlight);
+  --caret-color: var(--dl-amber-hi);
+  --bold-color: var(--dl-bright);
+
+  /* headings */
+  --inline-title-color: var(--dl-bright);
+  --h1-color: var(--dl-bright);
+  --h2-color: var(--dl-bright);
+  --h3-color: var(--dl-amber);
+  --h4-color: var(--dl-gold);
+  --h5-color: var(--dl-muted);
+  --h6-color: var(--dl-amber-lo);
+  --heading-formatting: var(--dl-faint);
+
+  /* links */
+  --link-color: var(--dl-gold);
+  --link-color-hover: var(--dl-bright);
+  --link-external-color: var(--dl-gold);
+  --link-external-color-hover: var(--dl-bright);
+  --link-unresolved-color: var(--dl-gold);
+  --link-unresolved-opacity: 0.6;
+  --link-decoration-thickness: 1px;
+
+  /* the terminal: code */
+  --code-background: var(--dl-code-bg);
+  --code-normal: var(--dl-code-text);
+  --code-comment: var(--dl-code-comment);
+  --code-punctuation: var(--dl-code-punct);
+  --code-string: var(--dl-code-string);
+  --code-operator: var(--dl-amber);
+  --code-keyword: var(--color-orange);
+  --code-function: var(--color-purple);
+  --code-property: var(--color-cyan);
+  --code-tag: var(--color-red);
+  --code-value: var(--dl-amber-hi);
+  --code-important: var(--color-orange);
+
+  /* tags */
+  --tag-color: var(--dl-amber-hi);
+  --tag-color-hover: var(--dl-bright);
+  --tag-background: var(--dl-wash-2);
+  --tag-background-hover: var(--dl-wash-3);
+
+  /* quotes, rules, lists, boxes */
+  --blockquote-border-color: var(--dl-amber);
+  --blockquote-border-thickness: 2px;
+  --blockquote-font-style: italic;
+  --blockquote-color: var(--dl-muted);
+  --hr-color: var(--dl-rule-3);
+  --hr-thickness: 1px;
+  --list-marker-color: var(--dl-amber-lo);
+  --list-marker-color-hover: var(--dl-amber);
+  --list-marker-color-collapsed: var(--dl-amber-hi);
+  --collapse-icon-color: var(--dl-amber-lo);
+  --collapse-icon-color-collapsed: var(--dl-amber-hi);
+  --checkbox-color: var(--dl-amber);
+  --checkbox-color-hover: var(--dl-amber-hi);
+  --checkbox-border-color: var(--dl-amber-lo);
+  --checkbox-border-color-hover: var(--dl-amber);
+  --checkbox-marker-color: var(--dl-page);
+  --checklist-done-color: var(--dl-faint);
+
+  /* tables */
+  --table-border-color: var(--dl-rule);
+  --table-header-border-color: var(--dl-rule-2);
+  --table-header-background: var(--dl-page-alt);
+  --table-header-background-hover: var(--dl-wash-2);
+  --table-header-font: var(--dl-font-term);
+  --table-header-weight: 400;
+  --table-header-size: 1.12em;
+  --table-header-color: var(--dl-amber);
+  --table-row-background-hover: var(--dl-wash-1);
+
+  /* the window: bars, tabs, the file list */
+  --titlebar-background: var(--dl-pitch);
+  --titlebar-background-focused: var(--dl-pitch);
+  --titlebar-text-color: var(--dl-amber-lo);
+  --titlebar-text-color-focused: var(--dl-amber);
+  --ribbon-background: var(--dl-wood);
+  --ribbon-background-collapsed: var(--dl-page);
+  --tab-container-background: var(--dl-wood);
+  --tab-outline-color: var(--dl-rule);
+  --tab-divider-color: var(--dl-rule-2);
+  --tab-text-color: var(--dl-faint);
+  --tab-text-color-focused: var(--dl-muted);
+  --tab-text-color-focused-active: var(--dl-bright);
+  --tab-text-color-focused-active-current: var(--dl-bright);
+  --status-bar-background: var(--dl-pitch);
+  --status-bar-border-color: var(--dl-rule);
+  --status-bar-text-color: var(--dl-amber-lo);
+  --nav-item-color: var(--dl-muted);
+  --nav-item-color-hover: var(--dl-bright);
+  --nav-item-color-active: var(--dl-amber-hi);
+  --nav-item-color-selected: var(--dl-bright);
+  --nav-item-color-highlighted: var(--dl-amber-hi);
+  --nav-item-background-hover: var(--dl-wash-1);
+  --nav-item-background-active: var(--dl-wash-2);
+  --nav-item-background-selected: var(--dl-wash-2);
+  --nav-indentation-guide-color: var(--dl-rule);
+  --nav-collapse-icon-color: var(--dl-amber-lo);
+  --nav-collapse-icon-color-collapsed: var(--dl-amber);
+  --icon-color: var(--dl-amber-lo);
+  --icon-color-hover: var(--dl-amber);
+  --icon-color-active: var(--dl-amber-hi);
+  --icon-color-focused: var(--dl-bright);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--dl-wash-3);
+  --scrollbar-active-thumb-bg: var(--dl-amber-lo);
+
+  /* things that float */
+  --modal-background: var(--dl-page);
+  --modal-border-color: var(--dl-rule-3);
+  --prompt-border-color: var(--dl-rule-3);
+
+  /* the chart room: graph and canvas */
+  --graph-line: var(--dl-rule-2);
+  --graph-node: var(--dl-muted);
+  --graph-node-unresolved: var(--dl-faint);
+  --graph-node-focused: var(--dl-amber-hi);
+  --graph-node-tag: var(--dl-lilac);
+  --graph-node-attachment: var(--color-cyan);
+  --graph-text: var(--dl-text);
+  --canvas-background: var(--dl-page);
+  --canvas-dot-pattern: var(--dl-rule);
+}
+
+
+/* ── 5. SMALL TOUCHES: the few rules that are not variables ────────── */
+
+/* The sign over the door glows a little. Dark only. */
+.inline-title,
+.markdown-rendered h1,
+.cm-s-obsidian .cm-header-1 {
+  text-shadow: var(--dl-title-glow);
+}
+
+/* The terminal's headings are spaced like the house's status lines. */
+.markdown-rendered :is(h3, h4, h6),
+.cm-s-obsidian :is(.cm-header-3, .cm-header-4, .cm-header-6) {
+  letter-spacing: 0.06em;
+}
+
+/* One lamp over every page. Dark only. */
+.workspace-leaf-content[data-type='markdown'] > .view-content {
+  background-image: var(--dl-lamp);
+}
+
+/* Links are underlined in dots, as in the long reads. */
+.markdown-rendered a,
+.cm-s-obsidian .cm-underline {
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+/* Tags are typed on the terminal. */
+.markdown-rendered a.tag,
+.cm-s-obsidian .cm-hashtag {
+  font-family: var(--dl-font-term);
+  letter-spacing: 0.04em;
+}
+
+/* The status bar keeps the house's line. */
+.status-bar {
+  letter-spacing: 0.08em;
+}
+.status-bar::before {
+  content: '\263C  candlelit \00B7  tide: rising \00B7  fire: going';
+  align-self: center;
+  padding: 0 10px 0 6px;
+  color: var(--dl-faint);
+  white-space: nowrap;
+}
+
+/* The command palette is the Board. */
+.prompt::before {
+  content: "What'll it be?";
+  display: block;
+  padding: 10px 16px 0;
+  font-family: var(--dl-font-term);
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  color: var(--dl-amber);
+}
